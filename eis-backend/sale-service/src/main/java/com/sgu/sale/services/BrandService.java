@@ -20,6 +20,6 @@ public interface BrandService {
 
     Brand updateBrand(Integer id, BrandUpdateFormRequest form)  throws Exception ;
 
-//    void deleteBrand(Integer brandId);
+    void deleteBrand(Integer brandId);
 
 }

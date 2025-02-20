@@ -67,19 +67,19 @@ public class BrandServiceImpl implements BrandService {
 
 	validateBrandName(form.getBrandName(), oldBrand.getId());
 
-	Brand updatedBrand = modelMapper.map(form, Brand.class);
-	return brandRepository.save(updatedBrand);
+	oldBrand.setBrandName(form.getBrandName());
+	return brandRepository.save(oldBrand);
     }
 
-//    @Override
-//    @Transactional
-//    public void deleteBrand(Integer brandId) {
-//	Brand oldBrand = brandRepository.findById(brandId)
-//		.orElseThrow(() -> new EntityNotFoundException("ID: " + brandId + " không tồn tại!"));
-//
-//	productService.updateDefaultBrandOfProduct(brandId);
-//	brandRepository.deleteById(brandId);
-//    }
+    @Override
+    @Transactional
+    public void deleteBrand(Integer brandId) {
+	Brand oldBrand = brandRepository.findById(brandId)
+		.orElseThrow(() -> new EntityNotFoundException("ID: " + brandId + " không tồn tại!"));
+
+	productService.updateDefaultBrandOfProduct(brandId);
+	brandRepository.deleteById(brandId);
+    }
 
     /**
      * Validates if the brand name already exists.
