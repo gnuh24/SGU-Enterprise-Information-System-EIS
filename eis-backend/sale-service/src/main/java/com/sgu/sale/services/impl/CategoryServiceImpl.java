@@ -73,8 +73,8 @@ public class CategoryServiceImpl implements CategoryService {
 	    throw new Exception(form.getCategoryName() + " đã tồn tại, xin vui lòng chọn tên khác !!" );
 	}
 
-	Category entity = modelMapper.map(form, Category.class);
-	return categoryRepository.save(entity);
+	oldEntity.setCategoryName(form.getCategoryName());
+	return categoryRepository.save(oldEntity);
     }
 
     @Override
@@ -88,6 +88,6 @@ public class CategoryServiceImpl implements CategoryService {
 	productService.updateDefaultCategoryOfProduct(categoryId);
 	categoryRepository.deleteById(categoryId);
     }
-    
+
 }
 
